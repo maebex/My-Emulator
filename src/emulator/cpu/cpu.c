@@ -2,6 +2,33 @@
 
 static void SetStateUsr_vd(void);
 static void SetStateSvc_vd(void);
+static void CpsrSetN_vd(uint32_t Value);
+static uint32_t CpsrGetN_ui32(void);
+static void CpsrSetZ_vd(uint32_t Value);
+static uint32_t CpsrGetZ_ui32(void);
+static void CpsrSetC_vd(uint32_t Value);
+static uint32_t CpsrGetC_ui32(void);
+static void CpsrSetQ_vd(uint32_t Value);
+static uint32_t CpsrGetQ_ui32(void);
+static void CpsrSetIT_vd(uint32_t Lower, uint32_t Higher);
+static uint32_t CpsrGetIT_ui32(void);
+static void CpsrSetJ_vd(uint32_t Value);
+static uint32_t CpsrGetJ_ui32(void);
+static void CpsrSetGE_vd(uint32_t Value);
+static uint32_t CpsrGet_ui32(void);
+static void CpsrSetE_vd(uint32_t Value);
+static uint32_t CpsrGetE_ui32(void);
+static void CpsrSetA_vd(uint32_t Value);
+static uint32_t CpsrGetA_ui32(void);
+static void CpsrSetI_vd(uint32_t Value);
+static uint32_t CpsrGetI_ui32(void);
+static void CpsrSetF_vd(uint32_t Value);
+static uint32_t CpsrGetF_ui32(void);
+static void CpsrSetT_vd(uint32_t Value);
+static uint32_t CpsrGetT_ui32(void);
+static void CpsrSetM_vd(uint32_t Value);
+static uint32_t CpsrGetM_ui32(void);
+
 
 // CPU
 Cpu_Processor_st CPU;
@@ -114,7 +141,7 @@ Cpu_Error_enm Cpu_SetMode_ui32(const Cpu_Mode_enm f_Mode)
 
 Cpu_Mode_enm Cpu_GetMode_ui32(void)
 {
-  return (*(CPU.Registers.PSR_pui32)&&(0x11111<<CPSR_M));
+  return CpsrGetM_ui32(); // TODO user GetMs
 } 
 
 Cpu_Privilege_enm Cpu_GetPrivilege_ui32(void)
@@ -139,7 +166,7 @@ static void SetStateUsr_vd(void)
   CPU.Registers.LR_pui32 = &LR;
   CPU.Registers.PC_pui32 = &PC;
   CPU.Registers.PSR_pui32 = &CPSR;
-  *(CPU.Registers.PSR_pui32) |= Cpu_Mode_USR_en<<CPSR_M;
+  CpsrSetM_vd(Cpu_Mode_USR_en);
 }
 
 // static void SetStateFiq_vd(void)
@@ -164,7 +191,7 @@ static void SetStateSvc_vd(void)
   CPU.Registers.LR_pui32 = &LR_svc;
   CPU.Registers.PC_pui32 = &PC;
   CPU.Registers.PSR_pui32 = &SPSR_svc;
-  *(CPU.Registers.PSR_pui32) |= Cpu_Mode_SVC_en<<CPSR_M;
+  CpsrSetM_vd(Cpu_Mode_SVC_en);
 }
 
 // static void SetStateAbt_vd(void)
@@ -186,9 +213,9 @@ void Cpu_ShowProcessorInfo(void)
 {
   printf("\n");
   printf("--------------------CPU Info:--------------------\n");
-  printf("Add. of CPU instance:\t0x%p\n",(&CPU));
-  printf("State:\t\t\t%d\n", *(CPU.Registers.PSR_pui32)&&(0x11111<<CPSR_M));
-  printf("Privilege Level:\t%d\n", CPU.Privilege);
+  printf("Add. of CPU instance:\t0x%p\n", Cpu_GetCpu_pst());
+  printf("State:\t\t\t%d\n", Cpu_GetMode_ui32());
+  printf("Privilege Level:\t%d\n", Cpu_GetPrivilege_ui32());
   printf("Register:\n");
   printf("R0:\t%d\tR6:\t%d\n", *(CPU.Registers.R0_pui32), *(CPU.Registers.R6_pui32));
   printf("R1:\t%d\tR7:\t%d\n", *(CPU.Registers.R1_pui32), *(CPU.Registers.R7_pui32));
@@ -200,21 +227,125 @@ void Cpu_ShowProcessorInfo(void)
   printf("LR:\t%d\n", *(CPU.Registers.LR_pui32));
   printf("PC:\t%d\n", *(CPU.Registers.PC_pui32));
   printf("PSR:\t%d\n", *(CPU.Registers.PSR_pui32));
-  // printf("R1:\t\t\t%d\n", *(CPU.Registers.R1_pui32));
-  // printf("R2:\t\t\t%d\n", *(CPU.Registers.R2_pui32));
-  // printf("R3:\t\t\t%d\n", *(CPU.Registers.R3_pui32));
-  // printf("R4:\t\t\t%d\n", *(CPU.Registers.R4_pui32));
-  // printf("R5:\t\t\t%d\n", *(CPU.Registers.R5_pui32));
-  // printf("R6:\t\t\t%d\n", *(CPU.Registers.R6_pui32));
-  // printf("R7:\t\t\t%d\n", *(CPU.Registers.R7_pui32));
-  // printf("R8:\t\t\t%d\n", *(CPU.Registers.R8_pui32));
-  // printf("R9:\t\t\t%d\n", *(CPU.Registers.R9_pui32));
-  // printf("R10:\t\t\t%d\n", *(CPU.Registers.R10_pui32));
-  // printf("R11:\t\t\t%d\n", *(CPU.Registers.R11_pui32));
-  // printf("R12:\t\t\t%d\n", *(CPU.Registers.R12_pui32));
-  // printf("SP:\t\t\t%d\n", *(CPU.Registers.SP_pui32));
-  // printf("LR:\t\t\t%d\n", *(CPU.Registers.LR_pui32));
-  // printf("PC:\t\t\t%d\n", *(CPU.Registers.PC_pui32));
-  // printf("PSR:\t\t\t%d\n", *(CPU.Registers.PSR_pui32));
   printf("-------------------------------------------------\n");
 }
+
+// CPSR Acccess Functions
+static void CpsrSetN_vd(uint32_t Value)
+{
+  *(CPU.Registers.PSR_pui32) |= Value<<CPSR_N;
+}
+static uint32_t CpsrGetN_ui32(void)
+{
+  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_N));
+}
+
+static void CpsrSetZ_vd(uint32_t Value)
+{
+  *(CPU.Registers.PSR_pui32) |= (Value<<CPSR_Z);
+}
+static uint32_t CpsrGetZ_ui32(void)
+{
+  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_Z));
+}
+
+static void CpsrSetC_vd(uint32_t Value)
+{
+  *(CPU.Registers.PSR_pui32) |= (Value<<CPSR_V);
+}
+static uint32_t CpsrGetC_ui32(void)
+{
+  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_C));
+}
+
+static void CpsrSetQ_vd(uint32_t Value)
+{
+  *(CPU.Registers.PSR_pui32) |= (Value<<CPSR_Q);
+}
+static uint32_t CpsrGetQ_ui32(void)
+{
+  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_Q));
+}
+
+static void CpsrSetIT_vd(uint32_t Lower, uint32_t Higher)
+{
+  *(CPU.Registers.PSR_pui32) |= (Lower<<CPSR_ITL);
+  *(CPU.Registers.PSR_pui32) |= (Higher<<CPSR_ITH);
+}
+static uint32_t CpsrGetIT_ui32(void)
+{
+  return (*(CPU.Registers.PSR_pui32)&&((0x11U<<CPSR_ITH)||(0x111111U<<CPSR_ITL)));
+}
+
+static void CpsrSetJ_vd(uint32_t Value)
+{
+  *(CPU.Registers.PSR_pui32) |= (Value<<CPSR_J);
+}
+static uint32_t CpsrGetJ_ui32(void)
+{
+  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_J));
+}
+
+static void CpsrSetGE_vd(uint32_t Value)
+{
+  *(CPU.Registers.PSR_pui32) |= (Value<<CPSR_GE);
+}
+static uint32_t CpsrGet_ui32(void)
+{
+  return (*(CPU.Registers.PSR_pui32)&&(0x1111U<<CPSR_GE));
+}
+
+static void CpsrSetE_vd(uint32_t Value)
+{
+  *(CPU.Registers.PSR_pui32) |= (Value<<CPSR_E);
+}
+static uint32_t CpsrGetE_ui32(void)
+{
+  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_E));
+}
+
+static void CpsrSetA_vd(uint32_t Value)
+{
+  *(CPU.Registers.PSR_pui32) |= (Value<<CPSR_A);
+}
+static uint32_t CpsrGetA_ui32(void)
+{
+  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_A));
+}
+
+static void CpsrSetI_vd(uint32_t Value)
+{
+  *(CPU.Registers.PSR_pui32) |= (Value<<CPSR_I);
+}
+static uint32_t CpsrGetI_ui32(void)
+{
+  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_I));
+}
+
+static void CpsrSetF_vd(uint32_t Value)
+{
+  *(CPU.Registers.PSR_pui32) |= (Value<<CPSR_F);
+}
+static uint32_t CpsrGetF_ui32(void)
+{
+  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_F));
+}
+
+static void CpsrSetT_vd(uint32_t Value)
+{
+  *(CPU.Registers.PSR_pui32) |= (Value<<CPSR_T);
+}
+static uint32_t CpsrGetT_ui32(void)
+{
+  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_T));
+}
+
+static void CpsrSetM_vd(uint32_t Value)
+{
+  *(CPU.Registers.PSR_pui32) |= (Value<<CPSR_M);
+}
+static uint32_t CpsrGetM_ui32(void)
+{
+  return (*(CPU.Registers.PSR_pui32)&&(0x111111U<<CPSR_M));
+}
+

@@ -115,9 +115,10 @@ extern Cpu_Register_ui32 CPSR;
 #define CPSR_C    (29U)       // Carry condition code flag 
 #define CPSR_V    (28U)       // Overflow condition code flag 
 #define CPSR_Q    (27U)       // Cumulative saturation bit 
-#define CPSR_IT   (25U)       // If-Then execution state bits for the Thumb IT (If-Then) instruction 
+#define CPSR_ITH  (25U)       // Higher If-Then execution state bits for the Thumb IT (If-Then) instruction 
 #define CPSR_J    (24U)       // Jazelle bit 
 #define CPSR_GE   (16U)       // Greater than or Equal flags 
+#define CPSR_ITL  (10U)       // Lower If-Then execution state bits for the Thumb IT (If-Then) instruction
 #define CPSR_E    (9U)        // Endianness execution state bit: 0 - Little-endian, 1 - Big-endian 
 #define CPSR_A    (8U)        // Asynchronous abort mask bit 
 #define CPSR_I    (7U)        // IRQ mask bit 

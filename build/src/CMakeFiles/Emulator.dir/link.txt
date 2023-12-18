@@ -1,0 +1,1 @@
+/usr/bin/cc    CMakeFiles/Emulator.dir/main.c.o CMakeFiles/Emulator.dir/emulator/emulator.c.o CMakeFiles/Emulator.dir/emulator/cpu/cpu.c.o  -o Emulator 

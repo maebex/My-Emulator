@@ -1,0 +1,1 @@
+/usr/bin/cc    CMakeFiles/my-emu.dir/main.c.o  -o my-emu 

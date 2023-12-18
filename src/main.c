@@ -12,7 +12,7 @@ uint32_t main(uint32_t argc, char *argv[])
 	{
 		printf("ERROR during Reset.\n");
 	}
-
+  Emulator_CpuSetState_ui32(Cpu_Mode_USR_en);
 	Cpu_ShowProcessorInfo();
 
 	printf("\n\nExiting.\n\n");

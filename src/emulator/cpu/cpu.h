@@ -19,13 +19,13 @@ typedef enum{
 } Cpu_Privilege_enm;
 
 typedef enum{
-  Cpu_Mode_USR_en   = 0b10000,    // User
-  Cpu_Mode_FIQ_en   = 0b10001,    // FIQ
-  Cpu_Mode_IRQ_en   = 0b10010,    // IRQ
-  Cpu_Mode_SVC_en   = 0b10011,    // Supervisor
-  Cpu_Mode_ABT_en   = 0b10111,    // Abort
-  Cpu_Mode_UND_en   = 0b11011,    // Undefined
-  Cpu_Mode_SYS_en   = 0b11111     // System
+  Cpu_Mode_USR_en   = 0b10000U,    // User
+  Cpu_Mode_FIQ_en   = 0b10001U,    // FIQ
+  Cpu_Mode_IRQ_en   = 0b10010U,    // IRQ
+  Cpu_Mode_SVC_en   = 0b10011U,    // Supervisor
+  Cpu_Mode_ABT_en   = 0b10111U,    // Abort
+  Cpu_Mode_UND_en   = 0b11011U,    // Undefined
+  Cpu_Mode_SYS_en   = 0b11111U     // System
 } Cpu_Mode_enm;
 
 typedef struct{
@@ -49,7 +49,6 @@ typedef struct{
 } Cpu_Registers_st;
 
 typedef struct{
-  Cpu_Mode_enm Mode;
   Cpu_Privilege_enm Privilege;
   Cpu_Registers_st Registers;
 }Cpu_Processor_st;
@@ -78,7 +77,6 @@ extern Cpu_Register_ui32 R12;
 extern Cpu_Register_ui32 SP;
 extern Cpu_Register_ui32 LR;
 extern Cpu_Register_ui32 PC;
-extern Cpu_Register_ui32 CPSR;
 
 // FIQ Registers
 extern Cpu_Register_ui32 R8_fiq;
@@ -110,11 +108,31 @@ extern Cpu_Register_ui32 SP_und;
 extern Cpu_Register_ui32 LR_und;
 extern Cpu_Register_ui32 SPSR_und;
 
+// Other registers
+extern Cpu_Register_ui32 CPSR;
+#define CPSR_N    (31U)       // Negative condition code flag 
+#define CPSR_Z    (30U)       // Zero condition code flag 
+#define CPSR_C    (29U)       // Carry condition code flag 
+#define CPSR_V    (28U)       // Overflow condition code flag 
+#define CPSR_Q    (27U)       // Cumulative saturation bit 
+#define CPSR_IT   (25U)       // If-Then execution state bits for the Thumb IT (If-Then) instruction 
+#define CPSR_J    (24U)       // Jazelle bit 
+#define CPSR_GE   (16U)       // Greater than or Equal flags 
+#define CPSR_E    (9U)        // Endianness execution state bit: 0 - Little-endian, 1 - Big-endian 
+#define CPSR_A    (8U)        // Asynchronous abort mask bit 
+#define CPSR_I    (7U)        // IRQ mask bit 
+#define CPSR_F    (6U)        // FIRQ mask bit 
+#define CPSR_T    (5U)        // Thumb execution state bit 
+#define CPSR_M    (0U)        // Mode field
+
+
+extern Cpu_Register_ui32 APSR;
+
 
 // Function Prototypes
 Cpu_Error_enm Cpu_Reset_ui32(void);
-Cpu_Error_enm Cpu_SetState_ui32(const Cpu_Mode_enm f_Mode);
-Cpu_Mode_enm Cpu_GetState_ui32(void);
+Cpu_Error_enm Cpu_SetMode_ui32(const Cpu_Mode_enm f_Mode);
+Cpu_Mode_enm Cpu_GetMode_ui32(void);
 Cpu_Privilege_enm Cpu_GetPrivilege_ui32(void);
 Cpu_Processor_st* Cpu_GetCpu_pst(void);
 void Cpu_ShowProcessorInfo(void);

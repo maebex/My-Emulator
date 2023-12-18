@@ -15,7 +15,7 @@ Emulator_Error_enm Emulator_CpuReset_ui32(void)
 Emulator_Error_enm Emulator_CpuSetState_ui32(const Cpu_Mode_enm f_Mode)
 {
   Emulator_Error_enm Error_ui32 = Emulator_Error_Success;
-  Cpu_Error_enm InternalError_ui32 = Cpu_SetState_ui32(f_Mode);
+  Cpu_Error_enm InternalError_ui32 = Cpu_SetMode_ui32(f_Mode);
   if(Cpu_Error_Success!=InternalError_ui32){
     Error_ui32 = Emulator_Error_Generic;
   }
@@ -24,7 +24,7 @@ Emulator_Error_enm Emulator_CpuSetState_ui32(const Cpu_Mode_enm f_Mode)
 
 Cpu_Mode_enm Emulator_CpuGetState_ui32(void)
 {
-  return Cpu_GetState_ui32();
+  return Cpu_GetMode_ui32();
 }
 
 Cpu_Privilege_enm Emulator_CpuGetPrivilege_ui32(void)

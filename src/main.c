@@ -13,6 +13,8 @@ uint32_t main(uint32_t argc, char *argv[])
 		printf("ERROR during Reset.\n");
 	}
 
+	Cpu_ShowProcessorInfo();
+
 	printf("\n\nExiting.\n\n");
 
   return 0;

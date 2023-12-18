@@ -111,13 +111,12 @@ extern Cpu_Register_ui32 LR_und;
 extern Cpu_Register_ui32 SPSR_und;
 
 
+// Function Prototypes
 Cpu_Error_enm Cpu_Reset_ui32(void);
 Cpu_Error_enm Cpu_SetState_ui32(const Cpu_Mode_enm f_Mode);
 Cpu_Mode_enm Cpu_GetState_ui32(void);
 Cpu_Privilege_enm Cpu_GetPrivilege_ui32(void);
 Cpu_Processor_st* Cpu_GetCpu_pst(void);
-
-
-
+void Cpu_ShowProcessorInfo(void);
 
 #endif /* C044F80B_9F0E_4EFB_A9BC_9D90FB5DFD02 */

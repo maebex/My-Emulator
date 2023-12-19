@@ -60,57 +60,28 @@ include src/CMakeFiles/Emulator.dir/flags.make
 src/CMakeFiles/Emulator.dir/main.c.o: src/CMakeFiles/Emulator.dir/flags.make
 src/CMakeFiles/Emulator.dir/main.c.o: ../src/main.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/a/git/My-Emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object src/CMakeFiles/Emulator.dir/main.c.o"
-	cd /home/a/git/My-Emulator/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Emulator.dir/main.c.o   -c /home/a/git/My-Emulator/src/main.c
+	cd /home/a/git/My-Emulator/build/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Emulator.dir/main.c.o   -c /home/a/git/My-Emulator/src/main.c
 
 src/CMakeFiles/Emulator.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Emulator.dir/main.c.i"
-	cd /home/a/git/My-Emulator/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/a/git/My-Emulator/src/main.c > CMakeFiles/Emulator.dir/main.c.i
+	cd /home/a/git/My-Emulator/build/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/a/git/My-Emulator/src/main.c > CMakeFiles/Emulator.dir/main.c.i
 
 src/CMakeFiles/Emulator.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Emulator.dir/main.c.s"
-	cd /home/a/git/My-Emulator/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/a/git/My-Emulator/src/main.c -o CMakeFiles/Emulator.dir/main.c.s
-
-src/CMakeFiles/Emulator.dir/emulator/emulator.c.o: src/CMakeFiles/Emulator.dir/flags.make
-src/CMakeFiles/Emulator.dir/emulator/emulator.c.o: ../src/emulator/emulator.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/a/git/My-Emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object src/CMakeFiles/Emulator.dir/emulator/emulator.c.o"
-	cd /home/a/git/My-Emulator/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Emulator.dir/emulator/emulator.c.o   -c /home/a/git/My-Emulator/src/emulator/emulator.c
-
-src/CMakeFiles/Emulator.dir/emulator/emulator.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Emulator.dir/emulator/emulator.c.i"
-	cd /home/a/git/My-Emulator/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/a/git/My-Emulator/src/emulator/emulator.c > CMakeFiles/Emulator.dir/emulator/emulator.c.i
-
-src/CMakeFiles/Emulator.dir/emulator/emulator.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Emulator.dir/emulator/emulator.c.s"
-	cd /home/a/git/My-Emulator/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/a/git/My-Emulator/src/emulator/emulator.c -o CMakeFiles/Emulator.dir/emulator/emulator.c.s
-
-src/CMakeFiles/Emulator.dir/emulator/cpu/cpu.c.o: src/CMakeFiles/Emulator.dir/flags.make
-src/CMakeFiles/Emulator.dir/emulator/cpu/cpu.c.o: ../src/emulator/cpu/cpu.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/a/git/My-Emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object src/CMakeFiles/Emulator.dir/emulator/cpu/cpu.c.o"
-	cd /home/a/git/My-Emulator/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Emulator.dir/emulator/cpu/cpu.c.o   -c /home/a/git/My-Emulator/src/emulator/cpu/cpu.c
-
-src/CMakeFiles/Emulator.dir/emulator/cpu/cpu.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Emulator.dir/emulator/cpu/cpu.c.i"
-	cd /home/a/git/My-Emulator/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/a/git/My-Emulator/src/emulator/cpu/cpu.c > CMakeFiles/Emulator.dir/emulator/cpu/cpu.c.i
-
-src/CMakeFiles/Emulator.dir/emulator/cpu/cpu.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Emulator.dir/emulator/cpu/cpu.c.s"
-	cd /home/a/git/My-Emulator/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/a/git/My-Emulator/src/emulator/cpu/cpu.c -o CMakeFiles/Emulator.dir/emulator/cpu/cpu.c.s
+	cd /home/a/git/My-Emulator/build/src && /usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/a/git/My-Emulator/src/main.c -o CMakeFiles/Emulator.dir/main.c.s
 
 # Object files for target Emulator
 Emulator_OBJECTS = \
-"CMakeFiles/Emulator.dir/main.c.o" \
-"CMakeFiles/Emulator.dir/emulator/emulator.c.o" \
-"CMakeFiles/Emulator.dir/emulator/cpu/cpu.c.o"
+"CMakeFiles/Emulator.dir/main.c.o"
 
 # External object files for target Emulator
 Emulator_EXTERNAL_OBJECTS =
 
 src/Emulator: src/CMakeFiles/Emulator.dir/main.c.o
-src/Emulator: src/CMakeFiles/Emulator.dir/emulator/emulator.c.o
-src/Emulator: src/CMakeFiles/Emulator.dir/emulator/cpu/cpu.c.o
 src/Emulator: src/CMakeFiles/Emulator.dir/build.make
+src/Emulator: src/emulator/libEmulatorLogic.a
 src/Emulator: src/CMakeFiles/Emulator.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/a/git/My-Emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable Emulator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/a/git/My-Emulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable Emulator"
 	cd /home/a/git/My-Emulator/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Emulator.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

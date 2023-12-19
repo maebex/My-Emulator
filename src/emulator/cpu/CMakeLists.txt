@@ -1,1 +1,1 @@
-target_sources(${CMAKE_PROJECT_NAME} PRIVATE cpu.c)
+target_sources(EmulatorLogic PRIVATE cpu.c)

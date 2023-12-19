@@ -1,7 +1,19 @@
-cmake_minimum_required(VERSION 3.15)
+if(NOT UNIX)
+    message(FATAL_ERROR "Not a unix system.")
+endif()
 
-project(Emulator)
+cmake_minimum_required(VERSION 3.16)
 
-add_subdirectory(
-    ./src
-)
+add_compile_options(-Wall -Wextra -Wpedantic)
+
+set(CMAKE_C_COMPILER gcc)
+set(CMAKE_CPP_COMPILER g++)
+
+project(Emulator
+        DESCRIPTION "A minimalistic ARM emulator"
+        VERSION 0.0.1)
+
+set(CMAKE_BUILD_TYPE Debug)
+
+
+add_subdirectory(./src)

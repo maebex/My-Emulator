@@ -4,8 +4,6 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/a/git/My-Emulator/src/emulator/cpu/cpu.c" "/home/a/git/My-Emulator/build/src/CMakeFiles/Emulator.dir/emulator/cpu/cpu.c.o"
-  "/home/a/git/My-Emulator/src/emulator/emulator.c" "/home/a/git/My-Emulator/build/src/CMakeFiles/Emulator.dir/emulator/emulator.c.o"
   "/home/a/git/My-Emulator/src/main.c" "/home/a/git/My-Emulator/build/src/CMakeFiles/Emulator.dir/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
@@ -16,6 +14,7 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/home/a/git/My-Emulator/build/src/emulator/CMakeFiles/EmulatorLogic.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

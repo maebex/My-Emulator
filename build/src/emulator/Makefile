@@ -110,6 +110,75 @@ depend:
 	cd /home/a/git/My-Emulator/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+src/emulator/CMakeFiles/EmulatorLogic.dir/rule:
+	cd /home/a/git/My-Emulator/build && $(MAKE) -f CMakeFiles/Makefile2 src/emulator/CMakeFiles/EmulatorLogic.dir/rule
+.PHONY : src/emulator/CMakeFiles/EmulatorLogic.dir/rule
+
+# Convenience name for target.
+EmulatorLogic: src/emulator/CMakeFiles/EmulatorLogic.dir/rule
+
+.PHONY : EmulatorLogic
+
+# fast build rule for target.
+EmulatorLogic/fast:
+	cd /home/a/git/My-Emulator/build && $(MAKE) -f src/emulator/CMakeFiles/EmulatorLogic.dir/build.make src/emulator/CMakeFiles/EmulatorLogic.dir/build
+.PHONY : EmulatorLogic/fast
+
+cpu/cpu.o: cpu/cpu.c.o
+
+.PHONY : cpu/cpu.o
+
+# target to build an object file
+cpu/cpu.c.o:
+	cd /home/a/git/My-Emulator/build && $(MAKE) -f src/emulator/CMakeFiles/EmulatorLogic.dir/build.make src/emulator/CMakeFiles/EmulatorLogic.dir/cpu/cpu.c.o
+.PHONY : cpu/cpu.c.o
+
+cpu/cpu.i: cpu/cpu.c.i
+
+.PHONY : cpu/cpu.i
+
+# target to preprocess a source file
+cpu/cpu.c.i:
+	cd /home/a/git/My-Emulator/build && $(MAKE) -f src/emulator/CMakeFiles/EmulatorLogic.dir/build.make src/emulator/CMakeFiles/EmulatorLogic.dir/cpu/cpu.c.i
+.PHONY : cpu/cpu.c.i
+
+cpu/cpu.s: cpu/cpu.c.s
+
+.PHONY : cpu/cpu.s
+
+# target to generate assembly for a file
+cpu/cpu.c.s:
+	cd /home/a/git/My-Emulator/build && $(MAKE) -f src/emulator/CMakeFiles/EmulatorLogic.dir/build.make src/emulator/CMakeFiles/EmulatorLogic.dir/cpu/cpu.c.s
+.PHONY : cpu/cpu.c.s
+
+emulator.o: emulator.c.o
+
+.PHONY : emulator.o
+
+# target to build an object file
+emulator.c.o:
+	cd /home/a/git/My-Emulator/build && $(MAKE) -f src/emulator/CMakeFiles/EmulatorLogic.dir/build.make src/emulator/CMakeFiles/EmulatorLogic.dir/emulator.c.o
+.PHONY : emulator.c.o
+
+emulator.i: emulator.c.i
+
+.PHONY : emulator.i
+
+# target to preprocess a source file
+emulator.c.i:
+	cd /home/a/git/My-Emulator/build && $(MAKE) -f src/emulator/CMakeFiles/EmulatorLogic.dir/build.make src/emulator/CMakeFiles/EmulatorLogic.dir/emulator.c.i
+.PHONY : emulator.c.i
+
+emulator.s: emulator.c.s
+
+.PHONY : emulator.s
+
+# target to generate assembly for a file
+emulator.c.s:
+	cd /home/a/git/My-Emulator/build && $(MAKE) -f src/emulator/CMakeFiles/EmulatorLogic.dir/build.make src/emulator/CMakeFiles/EmulatorLogic.dir/emulator.c.s
+.PHONY : emulator.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -118,6 +187,13 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... EmulatorLogic"
+	@echo "... cpu/cpu.o"
+	@echo "... cpu/cpu.i"
+	@echo "... cpu/cpu.s"
+	@echo "... emulator.o"
+	@echo "... emulator.i"
+	@echo "... emulator.s"
 .PHONY : help
 
 

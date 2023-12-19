@@ -3,9 +3,11 @@
 
 #include "emulator/emulator.h"
 
-uint32_t main(uint32_t argc, char *argv[])
+int main(int argc, char *argv[])
 {
   printf("\nThis is My Emulator\n");
+
+  printf("File: %s", argv[argc-1]);
 
 	Emulator_Error_enm Error_ui32 = Emulator_CpuReset_ui32();
 	if(Emulator_Error_Success != Error_ui32)

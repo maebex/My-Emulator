@@ -123,6 +123,19 @@ Emulator/fast:
 	$(MAKE) -f src/CMakeFiles/Emulator.dir/build.make src/CMakeFiles/Emulator.dir/build
 .PHONY : Emulator/fast
 
+#=============================================================================
+# Target rules for targets named EmulatorLogic
+
+# Build rule for target.
+EmulatorLogic: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 EmulatorLogic
+.PHONY : EmulatorLogic
+
+# fast build rule for target.
+EmulatorLogic/fast:
+	$(MAKE) -f src/emulator/CMakeFiles/EmulatorLogic.dir/build.make src/emulator/CMakeFiles/EmulatorLogic.dir/build
+.PHONY : EmulatorLogic/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -132,6 +145,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Emulator"
+	@echo "... EmulatorLogic"
 .PHONY : help
 
 

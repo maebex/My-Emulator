@@ -2,30 +2,30 @@
 
 static void SetStateUsr_vd(void);
 static void SetStateSvc_vd(void);
-static void CpsrSetN_vd(uint32_t Value);
-static uint32_t CpsrGetN_ui32(void);
-static void CpsrSetZ_vd(uint32_t Value);
-static uint32_t CpsrGetZ_ui32(void);
-static void CpsrSetC_vd(uint32_t Value);
-static uint32_t CpsrGetC_ui32(void);
-static void CpsrSetQ_vd(uint32_t Value);
-static uint32_t CpsrGetQ_ui32(void);
-static void CpsrSetIT_vd(uint32_t Lower, uint32_t Higher);
-static uint32_t CpsrGetIT_ui32(void);
-static void CpsrSetJ_vd(uint32_t Value);
-static uint32_t CpsrGetJ_ui32(void);
-static void CpsrSetGE_vd(uint32_t Value);
-static uint32_t CpsrGet_ui32(void);
-static void CpsrSetE_vd(uint32_t Value);
-static uint32_t CpsrGetE_ui32(void);
-static void CpsrSetA_vd(uint32_t Value);
-static uint32_t CpsrGetA_ui32(void);
-static void CpsrSetI_vd(uint32_t Value);
-static uint32_t CpsrGetI_ui32(void);
-static void CpsrSetF_vd(uint32_t Value);
-static uint32_t CpsrGetF_ui32(void);
-static void CpsrSetT_vd(uint32_t Value);
-static uint32_t CpsrGetT_ui32(void);
+__attribute__((__used__)) static void CpsrSetN_vd(uint32_t Value);
+__attribute__((__used__)) static uint32_t CpsrGetN_ui32(void);
+__attribute__((__used__)) static void CpsrSetZ_vd(uint32_t Value);
+__attribute__((__used__)) static uint32_t CpsrGetZ_ui32(void);
+__attribute__((__used__)) static void CpsrSetC_vd(uint32_t Value);
+__attribute__((__used__)) static uint32_t CpsrGetC_ui32(void);
+__attribute__((__used__)) static void CpsrSetQ_vd(uint32_t Value);
+__attribute__((__used__)) static uint32_t CpsrGetQ_ui32(void);
+__attribute__((__used__)) static void CpsrSetIT_vd(uint32_t Lower, uint32_t Higher);
+__attribute__((__used__)) static uint32_t CpsrGetIT_ui32(void);
+__attribute__((__used__)) static void CpsrSetJ_vd(uint32_t Value);
+__attribute__((__used__)) static uint32_t CpsrGetJ_ui32(void);
+__attribute__((__used__)) static void CpsrSetGE_vd(uint32_t Value);
+__attribute__((__used__)) static uint32_t CpsrGet_ui32(void);
+__attribute__((__used__)) static void CpsrSetE_vd(uint32_t Value);
+__attribute__((__used__)) static uint32_t CpsrGetE_ui32(void);
+__attribute__((__used__)) static void CpsrSetA_vd(uint32_t Value);
+__attribute__((__used__)) static uint32_t CpsrGetA_ui32(void);
+__attribute__((__used__)) static void CpsrSetI_vd(uint32_t Value);
+__attribute__((__used__)) static uint32_t CpsrGetI_ui32(void);
+__attribute__((__used__)) static void CpsrSetF_vd(uint32_t Value);
+__attribute__((__used__)) static uint32_t CpsrGetF_ui32(void);
+__attribute__((__used__)) static void CpsrSetT_vd(uint32_t Value);
+__attribute__((__used__)) static uint32_t CpsrGetT_ui32(void);
 static void CpsrSetM_vd(uint32_t Value);
 static uint32_t CpsrGetM_ui32(void);
 
@@ -194,7 +194,7 @@ void Cpu_ShowProcessorInfo(void)
 {
   printf("\n");
   printf("--------------------CPU Info:--------------------\n");
-  printf("Add. of CPU instance:\t0x%p\n", Cpu_GetCpu_pst());
+  printf("Add. of CPU instance:\t0x%p\n", (void*)Cpu_GetCpu_pst());
   printf("State:\t\t\t%d\n", Cpu_GetMode_ui32());
   printf("Privilege Level:\t%d\n", Cpu_GetPrivilege_ui32());
   printf("Register:\n");
@@ -248,6 +248,8 @@ static uint32_t CpsrGetQ_ui32(void)
   return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_Q));
 }
 
+// Lower: IT[1:0]
+// Higher: IT[7:2]
 static void CpsrSetIT_vd(uint32_t Lower, uint32_t Higher)
 {
   *(CPU.Registers.PSR_pui32) |= (Lower<<CPSR_ITL);
@@ -255,7 +257,10 @@ static void CpsrSetIT_vd(uint32_t Lower, uint32_t Higher)
 }
 static uint32_t CpsrGetIT_ui32(void)
 {
-  return (*(CPU.Registers.PSR_pui32)&&((0x11U<<CPSR_ITH)||(0x111111U<<CPSR_ITL)));
+  uint32_t tmp1, tmp2;
+  tmp1 = (*(CPU.Registers.PSR_pui32)&&((0x11U<<CPSR_ITH)))>>CPSR_ITH;
+  tmp2 = (*(CPU.Registers.PSR_pui32)&&((0x11U<<CPSR_ITL)))>>CPSR_ITL;
+  return (tmp1||tmp2);
 }
 
 static void CpsrSetJ_vd(uint32_t Value)

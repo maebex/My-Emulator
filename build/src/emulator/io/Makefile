@@ -80,14 +80,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/a/git/My-Emulator/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/a/git/My-Emulator/build/CMakeFiles /home/a/git/My-Emulator/build/src/CMakeFiles/progress.marks
-	cd /home/a/git/My-Emulator/build && $(MAKE) -f CMakeFiles/Makefile2 src/all
+	cd /home/a/git/My-Emulator/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/a/git/My-Emulator/build/CMakeFiles /home/a/git/My-Emulator/build/src/emulator/io/CMakeFiles/progress.marks
+	cd /home/a/git/My-Emulator/build && $(MAKE) -f CMakeFiles/Makefile2 src/emulator/io/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/a/git/My-Emulator/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/a/git/My-Emulator/build && $(MAKE) -f CMakeFiles/Makefile2 src/clean
+	cd /home/a/git/My-Emulator/build && $(MAKE) -f CMakeFiles/Makefile2 src/emulator/io/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,60 +97,18 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/a/git/My-Emulator/build && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/a/git/My-Emulator/build && $(MAKE) -f CMakeFiles/Makefile2 src/emulator/io/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/a/git/My-Emulator/build && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/a/git/My-Emulator/build && $(MAKE) -f CMakeFiles/Makefile2 src/emulator/io/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
 	cd /home/a/git/My-Emulator/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-# Convenience name for target.
-src/CMakeFiles/Emulator.dir/rule:
-	cd /home/a/git/My-Emulator/build && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/Emulator.dir/rule
-.PHONY : src/CMakeFiles/Emulator.dir/rule
-
-# Convenience name for target.
-Emulator: src/CMakeFiles/Emulator.dir/rule
-
-.PHONY : Emulator
-
-# fast build rule for target.
-Emulator/fast:
-	cd /home/a/git/My-Emulator/build && $(MAKE) -f src/CMakeFiles/Emulator.dir/build.make src/CMakeFiles/Emulator.dir/build
-.PHONY : Emulator/fast
-
-main.o: main.c.o
-
-.PHONY : main.o
-
-# target to build an object file
-main.c.o:
-	cd /home/a/git/My-Emulator/build && $(MAKE) -f src/CMakeFiles/Emulator.dir/build.make src/CMakeFiles/Emulator.dir/main.c.o
-.PHONY : main.c.o
-
-main.i: main.c.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.c.i:
-	cd /home/a/git/My-Emulator/build && $(MAKE) -f src/CMakeFiles/Emulator.dir/build.make src/CMakeFiles/Emulator.dir/main.c.i
-.PHONY : main.c.i
-
-main.s: main.c.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.c.s:
-	cd /home/a/git/My-Emulator/build && $(MAKE) -f src/CMakeFiles/Emulator.dir/build.make src/CMakeFiles/Emulator.dir/main.c.s
-.PHONY : main.c.s
 
 # Help Target
 help:
@@ -160,10 +118,6 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... Emulator"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
 .PHONY : help
 
 

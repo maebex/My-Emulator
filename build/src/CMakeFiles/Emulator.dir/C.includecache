@@ -6,13 +6,19 @@
 
 #IncludeRegexTransform: 
 
-/home/a/git/My-Emulator/src/emulator/cpu/cpu.c
-cpu.h
-/home/a/git/My-Emulator/src/emulator/cpu/cpu.h
-stdio.h
--
-
 /home/a/git/My-Emulator/src/emulator/cpu/cpu.h
 stdint.h
 -
+
+/home/a/git/My-Emulator/src/emulator/emulator.h
+cpu/cpu.h
+/home/a/git/My-Emulator/src/emulator/cpu/cpu.h
+
+/home/a/git/My-Emulator/src/main.c
+stdio.h
+-
+stdint.h
+-
+emulator/emulator.h
+/home/a/git/My-Emulator/src/emulator/emulator.h
 

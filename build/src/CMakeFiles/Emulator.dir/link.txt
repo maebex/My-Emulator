@@ -1,1 +1,1 @@
-/usr/bin/cc    CMakeFiles/Emulator.dir/main.c.o CMakeFiles/Emulator.dir/emulator/emulator.c.o CMakeFiles/Emulator.dir/emulator/cpu/cpu.c.o  -o Emulator 
+/usr/bin/gcc -g   CMakeFiles/Emulator.dir/main.c.o  -o Emulator   -L/home/a/git/My-Emulator/src/../build/src/Emulator  -Wl,-rpath,/home/a/git/My-Emulator/src/../build/src/Emulator emulator/libEmulatorLogic.a 

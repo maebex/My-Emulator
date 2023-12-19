@@ -19,13 +19,13 @@ typedef enum{
 } Cpu_Privilege_enm;
 
 typedef enum{
-  Cpu_Mode_USR_en   = 0b10000U,    // User
-  Cpu_Mode_FIQ_en   = 0b10001U,    // FIQ
-  Cpu_Mode_IRQ_en   = 0b10010U,    // IRQ
-  Cpu_Mode_SVC_en   = 0b10011U,    // Supervisor
-  Cpu_Mode_ABT_en   = 0b10111U,    // Abort
-  Cpu_Mode_UND_en   = 0b11011U,    // Undefined
-  Cpu_Mode_SYS_en   = 0b11111U     // System
+  Cpu_Mode_USR_en   = 0x10U,    // User
+  Cpu_Mode_FIQ_en   = 0x11U,    // FIQ
+  Cpu_Mode_IRQ_en   = 0x12U,    // IRQ
+  Cpu_Mode_SVC_en   = 0x13U,    // Supervisor
+  Cpu_Mode_ABT_en   = 0x17U,    // Abort
+  Cpu_Mode_UND_en   = 0x1BU,    // Undefined
+  Cpu_Mode_SYS_en   = 0x1FU     // System
 } Cpu_Mode_enm;
 
 typedef struct{
@@ -117,10 +117,10 @@ extern Cpu_Register_ui32 CPSR;
 #define CPSR_C    (29U)       // Carry condition code flag 
 #define CPSR_V    (28U)       // Overflow condition code flag 
 #define CPSR_Q    (27U)       // Cumulative saturation bit 
-#define CPSR_ITH  (25U)       // Higher If-Then execution state bits for the Thumb IT (If-Then) instruction 
+#define CPSR_ITL  (25U)       // Lower If-Then execution state bits for the Thumb IT (If-Then) instruction 
 #define CPSR_J    (24U)       // Jazelle bit 
 #define CPSR_GE   (16U)       // Greater than or Equal flags 
-#define CPSR_ITL  (10U)       // Lower If-Then execution state bits for the Thumb IT (If-Then) instruction
+#define CPSR_ITH  (10U)       // Higher If-Then execution state bits for the Thumb IT (If-Then) instruction
 #define CPSR_E    (9U)        // Endianness execution state bit: 0 - Little-endian, 1 - Big-endian 
 #define CPSR_A    (8U)        // Asynchronous abort mask bit 
 #define CPSR_I    (7U)        // IRQ mask bit 

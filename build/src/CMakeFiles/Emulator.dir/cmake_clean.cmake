@@ -1,6 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Emulator.dir/emulator/cpu/cpu.c.o"
-  "CMakeFiles/Emulator.dir/emulator/emulator.c.o"
   "CMakeFiles/Emulator.dir/main.c.o"
   "Emulator"
   "Emulator.pdb"

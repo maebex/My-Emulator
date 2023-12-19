@@ -29,14 +29,16 @@ typedef enum{
 } Cpu_Mode_enm;
 
 typedef struct{
-  Cpu_Register_ui32 *R0_pui32;
-  Cpu_Register_ui32 *R1_pui32;
-  Cpu_Register_ui32 *R2_pui32;
-  Cpu_Register_ui32 *R3_pui32;
-  Cpu_Register_ui32 *R4_pui32;
-  Cpu_Register_ui32 *R5_pui32;
-  Cpu_Register_ui32 *R6_pui32;
-  Cpu_Register_ui32 *R7_pui32;
+  // Regular, GP registers
+  Cpu_Register_ui32 R0_ui32;
+  Cpu_Register_ui32 R1_ui32;
+  Cpu_Register_ui32 R2_ui32;
+  Cpu_Register_ui32 R3_ui32;
+  Cpu_Register_ui32 R4_ui32;
+  Cpu_Register_ui32 R5_ui32;
+  Cpu_Register_ui32 R6_ui32;
+  Cpu_Register_ui32 R7_ui32;
+  // Banked registers - pointing to global variables defined in cpu.c and changed on state transition
   Cpu_Register_ui32 *R8_pui32;
   Cpu_Register_ui32 *R9_pui32;
   Cpu_Register_ui32 *R10_pui32;

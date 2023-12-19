@@ -35,14 +35,6 @@ Cpu_Processor_st CPU;
 
 // BANKED REGISTERS
 // User registers
-Cpu_Register_ui32 R0;
-Cpu_Register_ui32 R1;
-Cpu_Register_ui32 R2;
-Cpu_Register_ui32 R3;
-Cpu_Register_ui32 R4;
-Cpu_Register_ui32 R5;
-Cpu_Register_ui32 R6;
-Cpu_Register_ui32 R7;
 Cpu_Register_ui32 R8;
 Cpu_Register_ui32 R9;
 Cpu_Register_ui32 R10;
@@ -92,18 +84,7 @@ Cpu_Error_enm Cpu_Reset_ui32(void)
   Cpu_Error_enm Error_ui32 = Cpu_Error_Success;
   // Processor always starts in SVC mode
   Error_ui32 = Cpu_SetMode_ui32(Cpu_Mode_SVC_en);
-  if(Cpu_Error_Success==Error_ui32)
-  {
-    // Set GP Registers - they always stay the same
-    CPU.Registers.R0_pui32 = &R0;
-    CPU.Registers.R1_pui32 = &R1;
-    CPU.Registers.R2_pui32 = &R2;
-    CPU.Registers.R3_pui32 = &R3;
-    CPU.Registers.R4_pui32 = &R4;
-    CPU.Registers.R5_pui32 = &R5;
-    CPU.Registers.R6_pui32 = &R6;
-    CPU.Registers.R7_pui32 = &R7;
-  }
+
   return Error_ui32;
 }
 
@@ -217,12 +198,12 @@ void Cpu_ShowProcessorInfo(void)
   printf("State:\t\t\t%d\n", Cpu_GetMode_ui32());
   printf("Privilege Level:\t%d\n", Cpu_GetPrivilege_ui32());
   printf("Register:\n");
-  printf("R0:\t%d\tR6:\t%d\n", *(CPU.Registers.R0_pui32), *(CPU.Registers.R6_pui32));
-  printf("R1:\t%d\tR7:\t%d\n", *(CPU.Registers.R1_pui32), *(CPU.Registers.R7_pui32));
-  printf("R2:\t%d\tR8:\t%d\n", *(CPU.Registers.R2_pui32), *(CPU.Registers.R8_pui32));
-  printf("R3:\t%d\tR9:\t%d\n", *(CPU.Registers.R3_pui32), *(CPU.Registers.R9_pui32));
-  printf("R4:\t%d\tR10:\t%d\n", *(CPU.Registers.R4_pui32), *(CPU.Registers.R10_pui32));
-  printf("R5:\t%d\tR11:\t%d\n", *(CPU.Registers.R5_pui32), *(CPU.Registers.R11_pui32));
+  printf("R0:\t%d\tR6:\t%d\n", CPU.Registers.R0_ui32, CPU.Registers.R6_ui32);
+  printf("R1:\t%d\tR7:\t%d\n", CPU.Registers.R1_ui32, CPU.Registers.R7_ui32);
+  printf("R2:\t%d\tR8:\t%d\n", CPU.Registers.R2_ui32, *(CPU.Registers.R8_pui32));
+  printf("R3:\t%d\tR9:\t%d\n", CPU.Registers.R3_ui32, *(CPU.Registers.R9_pui32));
+  printf("R4:\t%d\tR10:\t%d\n", CPU.Registers.R4_ui32, *(CPU.Registers.R10_pui32));
+  printf("R5:\t%d\tR11:\t%d\n", CPU.Registers.R5_ui32, *(CPU.Registers.R11_pui32));
   printf("SP:\t%d\n", *(CPU.Registers.SP_pui32));
   printf("LR:\t%d\n", *(CPU.Registers.LR_pui32));
   printf("PC:\t%d\n", *(CPU.Registers.PC_pui32));

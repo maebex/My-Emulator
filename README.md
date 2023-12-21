@@ -26,14 +26,16 @@ This includes fetching (via CPU component), decoding and execution.
 This logic is implemented using a 3-stage pipeline.
 
 ## Usage
-The project is built using CMake. 
-The build pipeline can be invoked by calling:
+The project is built using CMake.
+The build pipeline can be invoked by calling **NOTE: You should be in My-Emulator/root/scripts when you call this script**:
 ```bash
-./scripts/build.sh
+cd root/scripts
+./build.sh
 ```
 
-The test pipeline can be invoked by calling:
+The test pipeline can be invoked by calling**NOTE: You should be in My-Emulator/root/scripts when you call this script**:
 ```bash
-./scripts/test.sh
+cd root/scripts
+./test.sh
 ```
 

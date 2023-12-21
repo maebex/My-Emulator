@@ -1,1 +1,0 @@
-target_sources(EmulatorLogic PRIVATE memory.c)

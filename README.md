@@ -28,13 +28,12 @@ This logic is implemented using a 3-stage pipeline.
 ## Usage
 The project is built using CMake. 
 The build pipeline can be invoked by calling:
-
 ```bash
-cd My-Emulator
-mkdir build
-cd build
-cmake ..
-make
-./src/Emulator path/to/objfile.o
+./scripts/build.sh
+```
+
+The test pipeline can be invoked by calling:
+```bash
+./scripts/test.sh
 ```
 

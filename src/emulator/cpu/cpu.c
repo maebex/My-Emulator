@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "cpu.h"
+#include "cpu/cpu.h"
 
 
 
@@ -171,7 +171,7 @@ void Cpu_CpsrSetN_vd(uint32_t Value)
 }
 uint32_t Cpu_CpsrGetN_ui32(void)
 {
-  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_N));
+  return (*(CPU.Registers.PSR_pui32)&(0x1U<<CPSR_N));
 }
 
 void Cpu_CpsrSetZ_vd(uint32_t Value)
@@ -180,7 +180,7 @@ void Cpu_CpsrSetZ_vd(uint32_t Value)
 }
 uint32_t Cpu_CpsrGetZ_ui32(void)
 {
-  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_Z));
+  return (*(CPU.Registers.PSR_pui32)&(0x1U<<CPSR_Z));
 }
 
 void Cpu_CpsrSetC_vd(uint32_t Value)
@@ -189,7 +189,7 @@ void Cpu_CpsrSetC_vd(uint32_t Value)
 }
 uint32_t Cpu_CpsrGetC_ui32(void)
 {
-  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_C));
+  return (*(CPU.Registers.PSR_pui32)&(0x1U<<CPSR_C));
 }
 
 void Cpu_CpsrSetQ_vd(uint32_t Value)
@@ -198,7 +198,7 @@ void Cpu_CpsrSetQ_vd(uint32_t Value)
 }
 uint32_t Cpu_CpsrGetQ_ui32(void)
 {
-  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_Q));
+  return (*(CPU.Registers.PSR_pui32)&(0x1U<<CPSR_Q));
 }
 
 // Lower: IT[1:0]
@@ -211,8 +211,8 @@ void Cpu_CpsrSetIT_vd(uint32_t Lower, uint32_t Higher)
 uint32_t Cpu_CpsrGetIT_ui32(void)
 {
   uint32_t tmp1, tmp2;
-  tmp1 = (*(CPU.Registers.PSR_pui32)&&((0x11U<<CPSR_ITH)))>>CPSR_ITH;
-  tmp2 = (*(CPU.Registers.PSR_pui32)&&((0x11U<<CPSR_ITL)))>>CPSR_ITL;
+  tmp1 = (*(CPU.Registers.PSR_pui32)&((0x3FU<<CPSR_ITH)))>>CPSR_ITH;
+  tmp2 = (*(CPU.Registers.PSR_pui32)&((0x3U<<CPSR_ITL)))>>CPSR_ITL;
   return (tmp1||tmp2);
 }
 
@@ -222,7 +222,7 @@ void Cpu_CpsrSetJ_vd(uint32_t Value)
 }
 uint32_t Cpu_CpsrGetJ_ui32(void)
 {
-  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_J));
+  return (*(CPU.Registers.PSR_pui32)&(0x1U<<CPSR_J));
 }
 
 void Cpu_CpsrSetGE_vd(uint32_t Value)
@@ -231,7 +231,7 @@ void Cpu_CpsrSetGE_vd(uint32_t Value)
 }
 uint32_t Cpu_CpsrGet_ui32(void)
 {
-  return (*(CPU.Registers.PSR_pui32)&&(0x1111U<<CPSR_GE));
+  return (*(CPU.Registers.PSR_pui32)&(0xFU<<CPSR_GE));
 }
 
 void Cpu_CpsrSetE_vd(uint32_t Value)
@@ -240,7 +240,7 @@ void Cpu_CpsrSetE_vd(uint32_t Value)
 }
 uint32_t Cpu_CpsrGetE_ui32(void)
 {
-  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_E));
+  return (*(CPU.Registers.PSR_pui32)&(0x1U<<CPSR_E));
 }
 
 void Cpu_CpsrSetA_vd(uint32_t Value)
@@ -249,7 +249,7 @@ void Cpu_CpsrSetA_vd(uint32_t Value)
 }
 uint32_t Cpu_CpsrGetA_ui32(void)
 {
-  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_A));
+  return (*(CPU.Registers.PSR_pui32)&(0x1U<<CPSR_A));
 }
 
 void Cpu_CpsrSetI_vd(uint32_t Value)
@@ -258,7 +258,7 @@ void Cpu_CpsrSetI_vd(uint32_t Value)
 }
 uint32_t Cpu_CpsrGetI_ui32(void)
 {
-  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_I));
+  return (*(CPU.Registers.PSR_pui32)&(0x1U<<CPSR_I));
 }
 
 void Cpu_CpsrSetF_vd(uint32_t Value)
@@ -267,7 +267,7 @@ void Cpu_CpsrSetF_vd(uint32_t Value)
 }
 uint32_t Cpu_CpsrGetF_ui32(void)
 {
-  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_F));
+  return (*(CPU.Registers.PSR_pui32)&(0x1U<<CPSR_F));
 }
 
 void Cpu_CpsrSetT_vd(uint32_t Value)
@@ -276,7 +276,7 @@ void Cpu_CpsrSetT_vd(uint32_t Value)
 }
 uint32_t Cpu_CpsrGetT_ui32(void)
 {
-  return (*(CPU.Registers.PSR_pui32)&&(0x1U<<CPSR_T));
+  return (*(CPU.Registers.PSR_pui32)&(0x1U<<CPSR_T));
 }
 
 void Cpu_CpsrSetM_vd(uint32_t Value)
@@ -285,7 +285,7 @@ void Cpu_CpsrSetM_vd(uint32_t Value)
 }
 uint32_t Cpu_CpsrGetM_ui32(void)
 {
-  return (*(CPU.Registers.PSR_pui32)&&(0x11111U<<CPSR_M));
+  return (*(CPU.Registers.PSR_pui32)&(0x1FU<<CPSR_M));
 }
 
 void Cpu_ControlSetnPriv_vd(uint32_t Value)
@@ -294,7 +294,7 @@ void Cpu_ControlSetnPriv_vd(uint32_t Value)
 }
 uint32_t Cpu_ControlGetnPriv_ui32(void)
 {
-  return (*(CPU.Registers.CONTROL_pui32)&&(0x1U<<CONTROL_nPRIV));
+  return (*(CPU.Registers.CONTROL_pui32)&(0x1U<<CONTROL_nPRIV));
 }
 
 void Cpu_ControlSetSpsel_vd(uint32_t Value)
@@ -303,7 +303,7 @@ void Cpu_ControlSetSpsel_vd(uint32_t Value)
 }
 uint32_t Cpu_ControlGetSpsel_ui32(void)
 {
-  return (*(CPU.Registers.CONTROL_pui32)&&(0x1U<<CONTROL_SPSEL));
+  return (*(CPU.Registers.CONTROL_pui32)&(0x1U<<CONTROL_SPSEL));
 }
 
 static void SetStateUsr_vd(void)

@@ -1,5 +1,7 @@
 
 add_library(EmulatorLogic emulator.c)
+target_include_directories(EmulatorLogic PRIVATE ${PROJECT_SOURCE_DIR}/src/emulator)
+
 
 add_subdirectory(config)
 add_subdirectory(cpu)

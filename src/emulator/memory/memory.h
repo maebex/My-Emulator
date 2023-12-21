@@ -11,12 +11,13 @@ typedef enum{
 }Memory_Error_enm;
 
 typedef struct{
-  uint32_t Size_ui32;     // Size in Bytes
-  uint32_t *Base_pui32;   // Pointer to base of stack, i.e. highest address
-  uint32_t *Top_pui32;    // Pointer to last element stack, i.e. lowest address in use
+  uint32_t SizeInWords_ui32;  // Size in Bytes
+  uint32_t *Base_pui32;       // Pointer to base of stack, i.e. highest address
+  uint32_t *Top_pui32;        // Pointer to last element stack, i.e. lowest address in use
 } Memory_Stack_st;
 
 Memory_Error_enm Memory_StackInit_ui32(Memory_Stack_st *Stack);
+void Memory_StackDestroy_vd(Memory_Stack_st *Stack);
 uint32_t Memory_StackPopWord_ui32(Memory_Stack_st *Stack);
 void Memory_StackPushWord_vd(Memory_Stack_st *Stack, uint32_t value);
 uint32_t Memory_StackIsFull(const Memory_Stack_st * const Stack);

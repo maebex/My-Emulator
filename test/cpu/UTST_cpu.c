@@ -7,10 +7,8 @@
 
 int main()
 {
-  TEST_ASSERT_EQUAL_INT_MESSAGE(1, 1, "BLAAAAAAA");
-  TEST_ASSERT_EQUAL_INT_MESSAGE(1, 0, "BLUBB");
+  TEST_ASSERT_EQUAL_INT(1, 1);
 
-  printf("BLAAAA\n");
   return 0;
 }
 

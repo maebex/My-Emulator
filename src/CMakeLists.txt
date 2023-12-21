@@ -22,5 +22,6 @@ include_directories("${PROJECT_SOURCE_DIR}/submodules")
 # Unity
 # Cmake and Unity example: https://www.poisel.info/posts/2019-07-15-cmake-unity-integration/
 include(CTest)
-add_subdirectory(${PROJECT_SOURCE_DIR}/test/cpu ${PROJECT_SOURCE_DIR}/build/utst)
+add_subdirectory(${PROJECT_SOURCE_DIR}/test/cpu ${PROJECT_SOURCE_DIR}/build/utst/cpu)
+add_subdirectory(${PROJECT_SOURCE_DIR}/test/memory ${PROJECT_SOURCE_DIR}/build/utst/memory)
 

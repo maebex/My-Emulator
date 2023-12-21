@@ -13,12 +13,6 @@ typedef enum{
 typedef uint32_t Cpu_Register_ui32; 
 
 typedef enum{
-  Cpu_PL_PL0  = 0,
-  Cpu_PL_PL1  = 1,
-  Cpu_PL_PL2  = 2,
-} Cpu_Privilege_enm;
-
-typedef enum{
   Cpu_Mode_USR_en   = 0x10U,    // User
   Cpu_Mode_FIQ_en   = 0x11U,    // FIQ
   Cpu_Mode_IRQ_en   = 0x12U,    // IRQ
@@ -48,10 +42,11 @@ typedef struct{
   Cpu_Register_ui32 *LR_pui32;
   Cpu_Register_ui32 *PC_pui32;
   Cpu_Register_ui32 *PSR_pui32;
+  Cpu_Register_ui32 *PRIMASK_pui32;
+  Cpu_Register_ui32 *CONTROL_pui32;
 } Cpu_Registers_st;
 
 typedef struct{
-  Cpu_Privilege_enm Privilege;
   Cpu_Registers_st Registers;
 }Cpu_Processor_st;
 
@@ -76,42 +71,27 @@ extern Cpu_Register_ui32 R9;
 extern Cpu_Register_ui32 R10;
 extern Cpu_Register_ui32 R11;
 extern Cpu_Register_ui32 R12;
-extern Cpu_Register_ui32 SP;
 extern Cpu_Register_ui32 LR;
 extern Cpu_Register_ui32 PC;
 
-// FIQ Registers
-extern Cpu_Register_ui32 R8_fiq;
-extern Cpu_Register_ui32 R9_fiq;
-extern Cpu_Register_ui32 R10_fiq;
-extern Cpu_Register_ui32 R11_fiq;
-extern Cpu_Register_ui32 R12_fiq;
-extern Cpu_Register_ui32 SP_fiq;
-extern Cpu_Register_ui32 LR_fiq;
-extern Cpu_Register_ui32 SPSR_fiq;
-
 // IRQ Registers
-extern Cpu_Register_ui32 SP_irq;
 extern Cpu_Register_ui32 LR_irq;
 extern Cpu_Register_ui32 SPSR_irq;
 
-// Abort Registers
-extern Cpu_Register_ui32 SP_abt;
-extern Cpu_Register_ui32 LR_abt;
-extern Cpu_Register_ui32 SPSR_abt;
-
 // Supervisor Registers
-extern Cpu_Register_ui32 SP_svc;
 extern Cpu_Register_ui32 LR_svc;
 extern Cpu_Register_ui32 SPSR_svc;
 
-// Undefined Registers
-extern Cpu_Register_ui32 SP_und;
-extern Cpu_Register_ui32 LR_und;
-extern Cpu_Register_ui32 SPSR_und;
-
 // Other registers
+extern Cpu_Register_ui32 MSP; // Main stack pointer
+extern Cpu_Register_ui32 PSP; // Process stack pointer
 extern Cpu_Register_ui32 CPSR;
+extern Cpu_Register_ui32 APSR;
+extern Cpu_Register_ui32 PRIMASK;
+extern Cpu_Register_ui32 CONTROL;
+
+
+
 #define CPSR_N    (31U)       // Negative condition code flag 
 #define CPSR_Z    (30U)       // Zero condition code flag 
 #define CPSR_C    (29U)       // Carry condition code flag 
@@ -128,6 +108,16 @@ extern Cpu_Register_ui32 CPSR;
 #define CPSR_T    (5U)        // Thumb execution state bit 
 #define CPSR_M    (0U)        // Mode field
 
+#define CONTROL_nPRIV   (0U)  // If the Unprivileged/Privileged Extension is implemented, defines the execution privilege in Thread mode:
+                              // 0: Thread mode has privileged access, 1: Thread mode has unprivileged access.
+#define CONTROL_nPRIV_Privileged    (0U)
+#define CONTROL_nPRIV_Unprivileged  (1U)
+#define CONTROL_SPSEL   (1U)  // Defines the stack to be used:
+                              // 0:  Use SP_main as the current stack 1: In Thread mode, use SP_process as the current stack. In Handler mode, this value is reserved.
+#define CONTROL_SPSEL_MSP           (0U)
+#define CONTROL_SPSEL_PSP           (1U)
+
+
 
 extern Cpu_Register_ui32 APSR;
 
@@ -136,8 +126,46 @@ extern Cpu_Register_ui32 APSR;
 Cpu_Error_enm Cpu_Reset_ui32(void);
 Cpu_Error_enm Cpu_SetMode_ui32(const Cpu_Mode_enm f_Mode);
 Cpu_Mode_enm Cpu_GetMode_ui32(void);
-Cpu_Privilege_enm Cpu_GetPrivilege_ui32(void);
+uint32_t Cpu_GetPrivilege_ui32(void);
 Cpu_Processor_st* Cpu_GetCpu_pst(void);
-void Cpu_ShowProcessorInfo(void);
+void Cpu_ShowProcessorInfo_vd(void);
+__attribute__((__used__)) uint32_t Cpu_GetSP(void);
+__attribute__((__used__)) void Cpu_SetLR(uint32_t value);
+__attribute__((__used__)) uint32_t Cpu_GetLR(void);
+__attribute__((__used__)) void Cpu_SetPC(uint32_t value);
+__attribute__((__used__)) uint32_t Cpu_GetPC(void);
+__attribute__((__used__)) void Cpu_IncrementPC(void);
+__attribute__((__used__)) void Cpu_CpsrSetN_vd(uint32_t Value);
+__attribute__((__used__)) uint32_t Cpu_CpsrGetN_ui32(void);
+__attribute__((__used__)) void Cpu_CpsrSetZ_vd(uint32_t Value);
+__attribute__((__used__)) uint32_t Cpu_CpsrGetZ_ui32(void);
+__attribute__((__used__)) void Cpu_CpsrSetC_vd(uint32_t Value);
+__attribute__((__used__)) uint32_t Cpu_CpsrGetC_ui32(void);
+__attribute__((__used__)) void Cpu_CpsrSetQ_vd(uint32_t Value);
+__attribute__((__used__)) uint32_t Cpu_CpsrGetQ_ui32(void);
+__attribute__((__used__)) void Cpu_CpsrSetIT_vd(uint32_t Lower, uint32_t Higher);
+__attribute__((__used__)) uint32_t Cpu_CpsrGetIT_ui32(void);
+__attribute__((__used__)) void Cpu_CpsrSetJ_vd(uint32_t Value);
+__attribute__((__used__)) uint32_t Cpu_CpsrGetJ_ui32(void);
+__attribute__((__used__)) void Cpu_CpsrSetGE_vd(uint32_t Value);
+__attribute__((__used__)) uint32_t Cpu_CpsrGet_ui32(void);
+__attribute__((__used__)) void Cpu_CpsrSetE_vd(uint32_t Value);
+__attribute__((__used__)) uint32_t Cpu_CpsrGetE_ui32(void);
+__attribute__((__used__)) void Cpu_CpsrSetA_vd(uint32_t Value);
+__attribute__((__used__)) uint32_t Cpu_CpsrGetA_ui32(void);
+__attribute__((__used__)) void Cpu_CpsrSetI_vd(uint32_t Value);
+__attribute__((__used__)) uint32_t Cpu_CpsrGetI_ui32(void);
+__attribute__((__used__)) void Cpu_CpsrSetF_vd(uint32_t Value);
+__attribute__((__used__)) uint32_t Cpu_CpsrGetF_ui32(void);
+__attribute__((__used__)) void Cpu_CpsrSetT_vd(uint32_t Value);
+__attribute__((__used__)) uint32_t Cpu_CpsrGetT_ui32(void);
+void Cpu_CpsrSetM_vd(uint32_t Value);
+uint32_t Cpu_CpsrGetM_ui32(void);
+__attribute__((__used__)) void Cpu_ControlSetnPriv_vd(uint32_t Value);
+__attribute__((__used__)) uint32_t Cpu_ControlGetnPriv_ui32(void);
+__attribute__((__used__)) void Cpu_ControlSetSpsel_vd(uint32_t Value);
+__attribute__((__used__)) uint32_t Cpu_ControlGetSpsel_ui32(void);
+
+
 
 #endif /* C044F80B_9F0E_4EFB_A9BC_9D90FB5DFD02 */

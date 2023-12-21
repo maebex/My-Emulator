@@ -6,5 +6,5 @@ C_FLAGS = -g   -Wall -Wextra -Wpedantic
 
 C_DEFINES = 
 
-C_INCLUDES = 
+C_INCLUDES = -I/home/a/git/My-Emulator/submodules 
 

@@ -4,6 +4,8 @@ endif()
 
 cmake_minimum_required(VERSION 3.16)
 
+set(CMAKE_VERBOSE_MAKEFILE TRUE)
+
 add_compile_options(-Wall -Wextra -Wpedantic)
 
 set(CMAKE_C_COMPILER gcc)

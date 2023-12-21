@@ -3,5 +3,6 @@
 
 src/CMakeFiles/Emulator.dir/main.c.o: ../src/emulator/cpu/cpu.h
 src/CMakeFiles/Emulator.dir/main.c.o: ../src/emulator/emulator.h
+src/CMakeFiles/Emulator.dir/main.c.o: ../src/emulator/memory/memory.h
 src/CMakeFiles/Emulator.dir/main.c.o: ../src/main.c
 

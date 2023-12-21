@@ -179,6 +179,33 @@ emulator.c.s:
 	cd /home/a/git/My-Emulator/build && $(MAKE) -f src/emulator/CMakeFiles/EmulatorLogic.dir/build.make src/emulator/CMakeFiles/EmulatorLogic.dir/emulator.c.s
 .PHONY : emulator.c.s
 
+memory/memory.o: memory/memory.c.o
+
+.PHONY : memory/memory.o
+
+# target to build an object file
+memory/memory.c.o:
+	cd /home/a/git/My-Emulator/build && $(MAKE) -f src/emulator/CMakeFiles/EmulatorLogic.dir/build.make src/emulator/CMakeFiles/EmulatorLogic.dir/memory/memory.c.o
+.PHONY : memory/memory.c.o
+
+memory/memory.i: memory/memory.c.i
+
+.PHONY : memory/memory.i
+
+# target to preprocess a source file
+memory/memory.c.i:
+	cd /home/a/git/My-Emulator/build && $(MAKE) -f src/emulator/CMakeFiles/EmulatorLogic.dir/build.make src/emulator/CMakeFiles/EmulatorLogic.dir/memory/memory.c.i
+.PHONY : memory/memory.c.i
+
+memory/memory.s: memory/memory.c.s
+
+.PHONY : memory/memory.s
+
+# target to generate assembly for a file
+memory/memory.c.s:
+	cd /home/a/git/My-Emulator/build && $(MAKE) -f src/emulator/CMakeFiles/EmulatorLogic.dir/build.make src/emulator/CMakeFiles/EmulatorLogic.dir/memory/memory.c.s
+.PHONY : memory/memory.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -194,6 +221,9 @@ help:
 	@echo "... emulator.o"
 	@echo "... emulator.i"
 	@echo "... emulator.s"
+	@echo "... memory/memory.o"
+	@echo "... memory/memory.i"
+	@echo "... memory/memory.s"
 .PHONY : help
 
 

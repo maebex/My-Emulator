@@ -12,8 +12,8 @@ Emulator_Error_enm Emulator_Init_ui32(uint32_t MStackSizeInWords)
   {
     EmulatorInitCalled_ui32 = 1U;
     // Init stack
-    MainStack_st.SizeInWords_ui32 = MStackSizeInWords;
-    InternalError_ui32 = Memory_StackInit_ui32(&MainStack_st);
+    Memory_EntireMemory_st.MainStack_st.SizeInWords_ui32 = MStackSizeInWords;
+    InternalError_ui32 = Memory_StackInit_ui32(&(Memory_EntireMemory_st.MainStack_st));
     if(Memory_Error_Success!=InternalError_ui32)
     {
       Error_ui32 = Emulator_Error_Generic;
@@ -27,7 +27,7 @@ Emulator_Error_enm Emulator_Init_ui32(uint32_t MStackSizeInWords)
 /* @brief Free memory reserved for stack, ... TODO */
 void Emulator_Shutdown_vd(void)
 {
-  Memory_StackDestroy_vd(&MainStack_st);
+  Memory_StackDestroy_vd(&(Memory_EntireMemory_st.MainStack_st));
 }
 
 

@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     Error_ui32 = Emulator_CpuSetMode_ui32(Cpu_Mode_SVC_en);
     Emulator_CpuShowProcessorInfo_vd();
 
-    Emulator_MemoryShowStackInfo_vd(&MainStack_st);
+    Emulator_MemoryShowStackInfo_vd(&(Memory_EntireMemory_st.MainStack_st));
   }
 
   Emulator_Shutdown_vd();

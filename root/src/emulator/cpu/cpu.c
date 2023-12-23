@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "cpu/cpu.h"
-
+#include "memory/memory.h"
 
 
 static void SetStateUsr_vd(void);
@@ -43,6 +43,11 @@ Cpu_Error_enm Cpu_Reset_ui32(void)
   Cpu_Error_enm Error_ui32 = Cpu_Error_Success;
   // Processor always starts in SVC mode
   Error_ui32 = Cpu_SetMode_ui32(Cpu_Mode_SVC_en);
+  //Reset PC
+  *(CPU.Registers.PC_pui32) = Memory_EntireMemory_st.Code_pch[0U];
+  
+  // Reset pipeline
+  // TODOs
 
   return Error_ui32;
 }
@@ -337,5 +342,97 @@ static void SetStateSvc_vd(void)
   Cpu_CpsrSetM_vd(Cpu_Mode_SVC_en);
   Cpu_ControlSetnPriv_vd(CONTROL_nPRIV_Privileged);
   Cpu_ControlSetSpsel_vd(CONTROL_SPSEL_MSP);
+}
+
+
+
+// SYSTEM CLOCK
+static uint32_t Cpu_SysClockCounter_ui32 = 0U;
+uint32_t Cpu_SysClockStart_ui32(); // TODO
+uint32_t Cpu_SysClockReset_ui32(); // TODO
+uint32_t Cpu_SysClockIncrement_ui32(); // TODO
+
+
+
+// PIPELINE
+Cpu_Error_enm Cpu_PipelineInit(void)
+{
+  CPU.Pipeline_st.FetchIdx_ui8 = 0;
+  CPU.Pipeline_st.DecodeIdx_ui8 = 1;
+  CPU.Pipeline_st.ExecuteIdx_ui8 = 2;
+}
+
+Cpu_Error_enm Cpu_PipelineExecute_ui32(void) // TODO
+{
+  Cpu_Error_enm Error_ui32 = Cpu_Error_Success;
+  // Check if pipeline container is populated 
+  // TODO
+  return Error_ui32;
+}
+
+Cpu_Error_enm Cpu_PipelineDecode_ui32(void) // TODO
+{
+  Cpu_Error_enm Error_ui32 = Cpu_Error_Success;
+  // Check if pipeline container is populated 
+  // TODO
+  return Error_ui32;
+}
+
+Cpu_Error_enm Cpu_PipelineFetch_ui32(void) // TODO
+{
+  Cpu_Error_enm Error_ui32 = Cpu_Error_Success;
+  // Load raw instruction into Container
+  CPU.Pipeline_st.PipelineData_pst[CPU.Pipeline_st.FetchIdx_ui8].RawInstruction_ui32 = *(CPU.Registers.PC_pui32);
+  return Error_ui32;
+}
+
+Cpu_Error_enm Cpu_PipelineFlush_ui32(void) // TODO
+{
+  Cpu_Error_enm Error_ui32 = Cpu_Error_Success;
+  // TODO
+  return Error_ui32;
+}
+
+
+/* @brief Increment values of pipeline stage indices */
+Cpu_Error_enm Cpu_PipelineUpdate_ui32(void)
+{
+  CPU.Pipeline_st.FetchIdx_ui8 = (CPU.Pipeline_st.FetchIdx_ui8+1U)%PIPELINE_LENGTH;
+  CPU.Pipeline_st.DecodeIdx_ui8 = (CPU.Pipeline_st.DecodeIdx_ui8+1U)%PIPELINE_LENGTH;
+  CPU.Pipeline_st.ExecuteIdx_ui8 = (CPU.Pipeline_st.ExecuteIdx_ui8+1U)%PIPELINE_LENGTH;
+}
+
+
+/* @brief This function invoces the pipeline to process for another stage, 
+          i.e. we run fetch, decode and execute operation on the three currently worked on Instruction Containers           
+*/
+Cpu_Error_enm Cpu_PipelineProcessInstructions_ui32(void)
+{
+  Cpu_Error_enm Error_ui32 = Cpu_Error_Success;
+  Cpu_Error_enm InternalError_ui32;
+
+  // Execute
+  InternalError_ui32 = Cpu_PipelineExecute_ui32(&(CPU.Pipeline_st.PipelineData_pst[CPU.Pipeline_st.ExecuteIdx_ui8]));
+  if(Cpu_Error_Success!=InternalError_ui32)
+  {
+    ; // TODO
+  }
+
+  // Decode
+  InternalError_ui32 = Cpu_PipelineDecode_ui32(&(CPU.Pipeline_st.PipelineData_pst[CPU.Pipeline_st.DecodeIdx_ui8]));
+  if(Cpu_Error_Success!=InternalError_ui32)
+  {
+    ; // TODO
+  }
+
+  // Fetch
+  InternalError_ui32 = Cpu_PipelineFetch_ui32(&(CPU.Pipeline_st.PipelineData_pst[CPU.Pipeline_st.FetchIdx_ui8]));
+  if(Cpu_Error_Success!=InternalError_ui32)
+  {
+    ; // TODO
+  }
+
+
+  return Error_ui32;
 }
 

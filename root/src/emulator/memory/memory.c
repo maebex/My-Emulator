@@ -6,9 +6,9 @@
 
 #include "memory/memory.h"
 
-/* @bbrief Our stack */
-Memory_Stack_st MainStack_st;
-//Memory_Stack_st ProcessStack_st; // TODO
+/* @brief Our entire memory */
+extern Memory_Memory_st Memory_EntireMemory_st = {0U};
+
 
 /* @brief This function is used to initialize the stack structurew 
    @details Stack->SizeInWords_ui32 must be set beforehand and is used for memory allocation. */
@@ -101,7 +101,6 @@ Memory_Error_enm Memory_StackPushWordSafe_ui32(Memory_Stack_st *Stack, uint32_t 
   return Error_ui32;
 }
 
-
 void Memory_ShowStackInfo_vd(const Memory_Stack_st * const Stack)
 {
   printf("\n");
@@ -111,4 +110,3 @@ void Memory_ShowStackInfo_vd(const Memory_Stack_st * const Stack)
   printf("Stack Top:\t\t%p\n", (void*)Stack->Top_pui32);
   printf("-------------------------------------------------\n");
 }
-
